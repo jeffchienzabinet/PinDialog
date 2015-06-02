@@ -11,6 +11,7 @@ import org.json.JSONObject;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.text.InputFilter;
 import android.text.InputType;
 import android.text.method.PasswordTransformationMethod;
 import android.widget.EditText;
@@ -29,12 +30,14 @@ public class PinDialog extends CordovaPlugin {
         	final String message = args.getString(0);
         	final String title = args.getString(1);
         	final JSONArray buttonLabels = args.getJSONArray(2);
-        	final JSONArray buttonLabels = args.getJSONArray(2);
+        	final int maxlength = args.optInt(3);
         	
         	final CordovaInterface cordova = this.cordova;
             final EditText promptInput =  new EditText(cordova.getActivity());
             promptInput.setInputType(InputType.TYPE_CLASS_NUMBER);
             promptInput.setTransformationMethod(PasswordTransformationMethod.getInstance());
+            if(maxlength > 0)
+                promptInput.setFilters(new InputFilter[] {new InputFilter.LengthFilter(maxlength)});
            
             Runnable runnable = new Runnable() {
                 public void run() {
