@@ -4,7 +4,7 @@ var exec = require('cordova/exec');
 module.exports = {
 
 	prompt: function(message, resultCallback, title, buttonLabels, maxlength) {
-        var _message = (message || "Message");
+        var _message = (message || "");
         var _title = (title || "Title");
         var _buttonLabels = (buttonLabels || ["OK","Cancel"]);
         var _maxlength = (maxlength || 0);
