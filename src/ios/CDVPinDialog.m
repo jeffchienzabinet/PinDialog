@@ -15,6 +15,8 @@
     NSString* message = [command argumentAtIndex:0];
     NSString* title = [command argumentAtIndex:1];
     NSArray* buttons = [command argumentAtIndex:2];
+    NSUInteger* maxlength = [command argumentAtIndex:3];
+    self.maxlength = maxlength;
     
     UIAlertView* alertView = [[UIAlertView alloc]
                                initWithTitle:title
@@ -42,6 +44,16 @@
     
 }
     
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    if(range.length + range.location > textField.text.length)
+    {
+        return NO;
+    }
+    
+    NSUInteger newLength = [textField.text length] + [string length] - range.length;
+    return newLength <= self.maxlength;
+}
     
 - (void)alertView:(UIAlertView*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
