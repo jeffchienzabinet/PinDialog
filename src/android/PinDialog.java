@@ -29,6 +29,7 @@ public class PinDialog extends CordovaPlugin {
         	final String message = args.getString(0);
         	final String title = args.getString(1);
         	final JSONArray buttonLabels = args.getJSONArray(2);
+        	final JSONArray buttonLabels = args.getJSONArray(2);
         	
         	final CordovaInterface cordova = this.cordova;
             final EditText promptInput =  new EditText(cordova.getActivity());
